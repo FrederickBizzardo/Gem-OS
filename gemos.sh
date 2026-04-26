@@ -36,7 +36,7 @@ display_logo() {
 # --- Logic ---
 
 check_dependencies() {
-    local pkgs=("qemu-utils" "wget" "tar" "xz-utils" "qemu-system-aarch64-headless" "e2fsprogs" "cpio" "gzip" "bsdtar" "proot")
+    local pkgs=("qemu-utils" "wget" "tar" "xz-utils" "qemu-system-aarch64-headless" "e2fsprogs" "cpio" "gzip" "bsdtar" "binutils")
     local missing=()
 
     for pkg in "${pkgs[@]}"; do
