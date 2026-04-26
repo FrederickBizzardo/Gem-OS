@@ -36,6 +36,8 @@ display_logo() {
 # --- Logic ---
 
 check_dependencies() {
+    # Comprehensive list for build (e2fsprogs, binutils, bsdtar, cpio) 
+    # and run (qemu-system, qemu-utils)
     local pkgs=("qemu-utils" "wget" "tar" "xz-utils" "qemu-system-aarch64-headless" "e2fsprogs" "cpio" "gzip" "bsdtar" "binutils")
     local missing=()
 

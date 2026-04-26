@@ -1,50 +1,44 @@
 # GemOS Project Documentation
 
-GemOS is a specialized, Debian-based Linux distribution designed to run seamlessly on non-rooted Android devices via Termux. It provides a full-featured Linux environment with `apt`, `sudo`, and a custom kernel optimized for Docker.
+GemOS is a specialized, Debian-based Linux distribution designed to run seamlessly on non-rooted Android devices via Termux. It provides a full-featured Linux environment optimized for ultra-speed and lightweight performance on mobile hardware.
 
 ## Project Evolution & Implementation
 
-### 3. Performance & Optimization (v1.1)
-- **Disk-Based Booting:** Migrated from RAM-heavy `initramfs` to a persistent disk-based root filesystem (`/dev/vda`). This reduces RAM usage by over 50%.
-- **QEMU Acceleration:** Enabled multi-threaded TCG and optimized device models (`virtio-pci`) for better performance on Android.
-- **Lightweight Initrd:** Replaced the full-OS initrd with a tiny, specialized bootloader that handles the switch to the disk rootfs.
-- **Responsive GUI:** Removed artificial delays in the launcher and improved installation feedback.
+### 1. Requirements & Core Logic
+- **Base:** Linux (Debian Bookworm) for maximum compatibility.
+- **Persistence:** All changes are saved to `gemos.img` (Persistent Disk).
+- **Environment:** Optimized for Non-rooted Android/Termux.
+
+### 2. Performance & Optimization (v1.1)
+- **Disk-Based Architecture:** Migrated from RAM-heavy `initramfs` to a disk-based rootfs (`/dev/vda`). This reduces RAM usage by over 50%, preventing crashes.
+- **QEMU Acceleration:** Enabled multi-threaded TCG (`-accel tcg,thread=multi`) and 2 CPU cores for faster execution.
+- **MMIO Devices:** Switched to `virtio-mmio` device mapping for better compatibility with Android kernels.
+- **Ultra-Fast Boot:** Specialized "Tiny Initrd" handles the boot process in seconds, including a recursive library-tracing system to ensure zero "shared library" errors.
+
+### 3. Build & Safety Features
+- **Host-Side Configuration:** Bypasses `proot` and kernel restrictions by configuring the OS directly from the Termux host during installation.
+- **Robust Extraction:** Uses `bsdtar` with specific flags to handle Android's lack of hard-link support silently.
+- **Auto-Dependency System:** The launcher automatically detects and installs all required Termux packages (`qemu`, `binutils`, `e2fsprogs`, etc.) on first run.
+- **Clean Environment:** Integrated `.gitignore` to manage large disk images and temporary build artifacts.
 
 ## Prerequisites (Host - Termux)
 
-To build and run GemOS, the following packages must be installed on your Termux host:
-
-```bash
-pkg install qemu-utils wget tar xz-utils qemu-system-aarch64-headless e2fsprogs cpio gzip bsdtar
-```
+The launcher (`gemos.sh`) will automatically offer to install these for you:
+`qemu-utils`, `wget`, `tar`, `xz-utils`, `qemu-system-aarch64-headless`, `e2fsprogs`, `cpio`, `gzip`, `bsdtar`, `binutils`.
 
 ## Project Structure
 
-- `gemos.sh`: The primary launcher. Handles dependency checks, downloads missing components, and boots the OS.
-- `scripts/build_disk.sh`: Downloads the official Debian Cloud ARM64 image, extracts it, and resizes it to 4GB.
-- `scripts/build_kernel.sh`: Reference script for building a Docker-optimized kernel from source (used if pre-builts are not desired).
-- `kernel/`: Stores the bootable kernel (`linux`) and `initrd.gz`.
-- `downloads/`: Temporary storage for raw image artifacts.
-- `gemos.img`: The persistent virtual disk for GemOS.
-
-## Customizations & Environment
-
-- **Branding:** Removed Debian-specific login banners in `/etc/issue` and `/etc/motd`, replacing them with custom GemOS branding.
-- **Dashboard:** Added a `/usr/local/bin/gemos-dashboard` script and integrated it into the shell profile for a clean, customized login experience.
-- **UI Isolation:** Updated `gemos.sh` to use terminal alternate screen buffers (`tput smcup`/`rmcup`), isolating the VM output from the host terminal and preventing scrolling into host history.
-- **Exit:** To exit GemOS and return to Termux, use the QEMU escape sequence: press `Ctrl+a` then `x`. (Note: Typing `exit` inside GemOS only logs you out of the current shell session).
-
-## Core Features
-- **Persistence:** All changes made inside GemOS are saved to `gemos.img`.
-- **Networking:** Pre-configured with DHCP on `eth0`. Ports are mapped (e.g., SSH on 2222) for Termux-to-GemOS communication.
-- **Setup Script:** Includes `/usr/local/bin/gemos-setup` inside the guest to automate Docker installation.
+- `gemos.sh`: Main launcher and dependency manager.
+- `scripts/build_rootfs.sh`: The heart of GemOS. Handles extraction, disk creation, and recursive library tracing.
+- `kernel/`: Stores the bootable kernel (`vmlinuz-cloud`) and the tiny `initrd.gz`.
+- `gemos.img`: The persistent 4GB virtual disk.
 
 ## How to Use
 
 1. **Boot:** Run `./gemos.sh`.
-2. **Setup:** On the first boot, log in and execute `sudo gemos-setup`.
-3. **Docker:** Use `sudo service docker start` followed by `sudo docker run hello-world`.
-4. **Exit:** Press `Ctrl+a` then `x` to terminate the VM and return to the Termux host. Typing `exit` inside the VM will only log you out of your account.
+2. **Setup:** On first boot, log in and execute `sudo gemos-setup` to install Docker and other tools.
+3. **Uninstall:** Use the "Full Uninstall" option in the main menu to wipe GemOS and free up space.
+4. **Exit:** Press `Ctrl+a` then `x` to terminate the VM.
 
 ---
 *Updated by Gemini CLI - April 2026*
