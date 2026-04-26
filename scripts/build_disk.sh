@@ -1,26 +1,14 @@
 #!/bin/bash
 set -e
 
-# GemOS Disk Builder (ARM64)
-# This script downloads a base Debian image and prepares it for GemOS.
+# GemOS Disk Builder (ARM64) - Lightweight Version
+# This script prepares the disk image file.
+# The actual content is populated by build_rootfs.sh for better efficiency.
 
-IMAGE_URL="https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-nocloud-arm64.tar.xz"
-DOWNLOAD_DIR="downloads"
 DISK_IMAGE="gemos.img"
 
-mkdir -p ${DOWNLOAD_DIR}
+echo "Creating 4GB sparse disk image..."
+# Use truncate to create a sparse file (takes 0 bytes initially)
+truncate -s 4G ${DISK_IMAGE}
 
-echo "Downloading Debian Cloud Image..."
-wget -c ${IMAGE_URL} -O ${DOWNLOAD_DIR}/debian_base.tar.xz
-
-echo "Extracting Disk Image..."
-tar -xf ${DOWNLOAD_DIR}/debian_base.tar.xz -C .
-# The extracted file is typically 'disk.raw'
-if [ -f "disk.raw" ]; then
-    mv disk.raw ${DISK_IMAGE}
-fi
-
-echo "Resizing Disk to 4GB..."
-qemu-img resize ${DISK_IMAGE} 4G
-
-echo "GemOS Disk Preparation Complete: ${DISK_IMAGE}"
+echo "GemOS Disk Placeholder Created: ${DISK_IMAGE}"

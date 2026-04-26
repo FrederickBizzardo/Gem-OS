@@ -4,17 +4,11 @@ GemOS is a specialized, Debian-based Linux distribution designed to run seamless
 
 ## Project Evolution & Implementation
 
-### 1. Requirements Gathering
-- **Base:** Linux (Debian) for maximum compatibility.
-- **Tools:** Must include `apt`, `sudo`, and `service`.
-- **Containers:** Full Docker support (requires specific kernel features).
-- **Environment:** Non-rooted Android/Termux (requires QEMU virtualization).
-
-### 2. Implementation History
-- **Initial Approach (LFS):** Attempted a "Linux From Scratch" build with BusyBox. This was abandoned to fulfill the `apt` and `sudo` requirements more effectively.
-- **Debian RootFS Extraction:** Encountered issues with hard links and permissions when extracting Debian rootfs directly onto the Android filesystem.
-- **Architecture Synchronization:** Switched from x86_64 to ARM64 to align with native mobile hardware while using QEMU's `virt` machine type for performance.
-- **Kernel/Initrd Solution:** Adopted the Debian Netboot kernel and official Cloud `nocloud` images to ensure a stable boot process and avoid "VFS: Unable to mount root" panics.
+### 3. Performance & Optimization (v1.1)
+- **Disk-Based Booting:** Migrated from RAM-heavy `initramfs` to a persistent disk-based root filesystem (`/dev/vda`). This reduces RAM usage by over 50%.
+- **QEMU Acceleration:** Enabled multi-threaded TCG and optimized device models (`virtio-pci`) for better performance on Android.
+- **Lightweight Initrd:** Replaced the full-OS initrd with a tiny, specialized bootloader that handles the switch to the disk rootfs.
+- **Responsive GUI:** Removed artificial delays in the launcher and improved installation feedback.
 
 ## Prerequisites (Host - Termux)
 

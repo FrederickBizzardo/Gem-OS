@@ -1,0 +1,23 @@
+# GemOS Git Ignore
+
+# Large Virtual Disk Images (>50MB)
+*.img
+*.raw
+downloads/
+
+# Kernel & Boot Artifacts
+kernel/vmlinuz*
+kernel/bzImage
+kernel/linux
+initramfs.cpio.gz
+initrd_temp/
+rootfs_temp/
+
+# Temporary and Local Files
+*.bak
+testfile
+modules/
+
+# Logs and OS state
+.DS_Store
+*.log
