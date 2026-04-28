@@ -1,0 +1,17 @@
+/.
+/usr
+/usr/lib
+/usr/lib/grub
+/usr/lib/grub/arm64-efi-signed
+/usr/lib/grub/arm64-efi-signed/gcdaa64.efi.signed
+/usr/lib/grub/arm64-efi-signed/grubaa64.efi.signed
+/usr/lib/grub/arm64-efi-signed/grubnetaa64-installer.efi.signed
+/usr/lib/grub/arm64-efi-signed/grubnetaa64.efi.signed
+/usr/share
+/usr/share/bug
+/usr/share/bug/grub-efi-arm64-signed
+/usr/share/bug/grub-efi-arm64-signed/control
+/usr/share/doc
+/usr/share/doc/grub-efi-arm64-signed
+/usr/share/doc/grub-efi-arm64-signed/changelog.gz
+/usr/share/doc/grub-efi-arm64-signed/copyright

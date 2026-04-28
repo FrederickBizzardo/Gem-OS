@@ -1,0 +1,6 @@
+5f00bd0a5542d09f2a20db637eecf665  usr/lib/aarch64-linux-gnu/libnss_myhostname.so.2
+6eb135b4151ac6d07c1600ef3beafcd4  usr/share/doc/libnss-myhostname/NEWS.Debian.gz
+5d54d763b8e2cb8d1ac14363f9c7b958  usr/share/doc/libnss-myhostname/changelog.Debian.gz
+b16a86fb841b001b52a5c5caccf526c2  usr/share/doc/libnss-myhostname/copyright
+17a877c4babe0e916adb7cee60d63764  usr/share/lintian/overrides/libnss-myhostname
+52165b3a5454ad46cd9f1144f0a63253  usr/share/man/man8/nss-myhostname.8.gz

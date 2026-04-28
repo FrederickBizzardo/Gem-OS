@@ -1,0 +1,7 @@
+8e5c0af17dbee0bce6736af4ac3b2e5e  usr/lib/shim/BOOTAA64.CSV
+b812a769ec32765dca3402e558f0e100  usr/lib/shim/fbaa64.efi
+10b6e7813dafa7279a7ff2ad3724038d  usr/lib/shim/mmaa64.efi
+215214a92e6f164ec38e9be3d699602a  usr/lib/shim/shimaa64.efi
+e322eee499aa2c183d5de0a1d892d618  usr/share/doc/shim-unsigned/changelog.Debian.gz
+d3f9cd59ff3c910165878ec0ee1bde8a  usr/share/doc/shim-unsigned/copyright
+7f9f8a7d8d7c8cdc09eec2dd92b5e096  usr/share/shim/debian-uefi-ca.der

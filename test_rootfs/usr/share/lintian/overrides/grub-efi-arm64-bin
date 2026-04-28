@@ -1,0 +1,4 @@
+grub-efi-arm64-bin: unstripped-binary-or-object *.mod
+grub-efi-arm64-bin: statically-linked-binary usr/lib/grub/arm64-efi/kernel.img
+grub-efi-arm64-bin: unstripped-binary-or-object usr/lib/grub/arm64-efi/kernel.img
+# These aren't Windows executables, and these features wouldn't be very useful. echo grub-efi-arm64-bin: portable-executable-missing-security-features *.efi ASLR DEP/NX

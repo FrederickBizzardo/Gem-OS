@@ -1,0 +1,7 @@
+198b66a2c0d46f351b2cf3f698ca0c7d  usr/lib/grub/arm64-efi-signed/gcdaa64.efi.signed
+bb1973f4f1d020348077ad5a56ccc690  usr/lib/grub/arm64-efi-signed/grubaa64.efi.signed
+b02dceeea9a073df8a0f692118be37b8  usr/lib/grub/arm64-efi-signed/grubnetaa64-installer.efi.signed
+d3e8553581d2657634a9fb241ab03ff9  usr/lib/grub/arm64-efi-signed/grubnetaa64.efi.signed
+c9ccde36a90288e8936d237349fa339e  usr/share/bug/grub-efi-arm64-signed/control
+bf27403b3089effd0033dd9c43b0aa7d  usr/share/doc/grub-efi-arm64-signed/changelog.gz
+a915ffe83d50bfbcbf960a165cb97e85  usr/share/doc/grub-efi-arm64-signed/copyright

@@ -1,0 +1,4 @@
+e9b5df34e581befabbbfa3df7f170540  usr/sbin/update-secureboot-policy
+7bb4342c25483921ac752527a7b244b5  usr/share/doc/shim-signed-common/changelog.gz
+aed2d2db4a3162546355f5eb15bcaf8a  usr/share/doc/shim-signed-common/copyright
+fef80dab1fd23e1ca8c5b76c4956cdcd  usr/share/lintian/overrides/shim-signed-common

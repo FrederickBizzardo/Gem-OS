@@ -83,24 +83,29 @@ boot_vm() {
     # Extract kernel from cloud image if not done
     if [ ! -f "kernel/vmlinuz-cloud" ]; then
         echo "Extracting cloud kernel..."
-        # The cloud image has vmlinuz in /boot/ inside partition 1
-        # We already have it extracted in downloads/disk.raw
         debugfs -R "dump /boot/vmlinuz-6.1.0-44-arm64 kernel/vmlinuz-cloud" downloads/disk.raw?offset=$((262144*512)) > /dev/null 2>&1
     fi
 
-    echo "Booting GemOS..."
+    # Use full initrd with virtio drivers (more reliable than custom tiny initrd)
+    if [ -f "test_rootfs/boot/initrd.img-6.1.0-44-arm64" ]; then
+        INITRD="test_rootfs/boot/initrd.img-6.1.0-44-arm64"
+        echo "Using full initrd with virtio drivers..."
+    fi
+
+    echo "Booting GemOS (Optimized)..."
     qemu-system-aarch64 \
-        -m 1024 \
+        -m 1536 \
         -smp 2 \
         -cpu cortex-a57 \
         -machine virt \
         -accel tcg,thread=multi \
         -kernel "${KERNEL_CLOUD:-kernel/vmlinuz-cloud}" \
         -initrd "$INITRD" \
-        -drive file="$DISK_IMAGE",if=none,id=drive0,format=raw \
+        -drive file="$DISK_IMAGE",if=none,id=drive0,format=raw,cache=writeback \
         -device virtio-blk-pci,drive=drive0 \
         -nographic \
-        -append "root=/dev/vda rw console=ttyAMA0 quiet" \
+        -serial mon:stdio \
+        -append "root=/dev/vda rw console=ttyAMA0,115200 quiet loglevel=3 systemd.unit=multi-user.target systemd.mask=systemd-resolved.service systemd.mask=systemd-networkd.service systemd.mask=systemd-timesyncd.service systemd.mask=systemd-update-utmp.service systemd.mask=systemd-update-utmp-runlevel.service systemd.mask=e2scrub_reap.service systemd.mask=systemd-journal-flush.service modprobe.blacklist=autofs4 rootdelay=5" \
         -netdev user,id=net0,hostfwd=tcp::2222-:22 \
         -device virtio-net-pci,netdev=net0
 }

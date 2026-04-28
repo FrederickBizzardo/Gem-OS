@@ -1,0 +1,10 @@
+../scripts/debianbts,sha256=2c9a4de71eea8b94bdab8c2a6127d676a35e095f8dcdcccdc91bceda63639714,217
+debianbts/__init__.py,sha256=1ed53e7457d73abf8d11d9854a8b5f3e9be7dce95c8066189cddec9e64aec73d,107
+debianbts/__main__.py,sha256=430da31db7731319ff9543db7df84d7f0de4e7ccb7c96a9b4fff34f0230fc25c,279
+debianbts/debianbts.py,sha256=b35b22a463238cfec1995380d45a892379492220539494cbcc0cf1b1266fe5a4,17956
+debianbts/version.py,sha256=ae9bd74754fe27ac91070b1d551784a9a701136d799f08942cc0c02e57047197,212
+python_debianbts-4.0.1.dist-info/METADATA,sha256=a1a60214bea5025b8e7d0556aa5df34cde4ca71eb9b5700cf526ef748649ea98,4640
+python_debianbts-4.0.1.dist-info/RECORD,,
+python_debianbts-4.0.1.dist-info/WHEEL,sha256=db07a93359e4e034b8785a58ad6d534ea3dca0635f1e184efe2e66e1c3a299ba,92
+python_debianbts-4.0.1.dist-info/entry_points.txt,sha256=6d27ed835756dad4e197987eafbc9266066f3788061b57c23fa0634b128bd3e6,54
+python_debianbts-4.0.1.dist-info/top_level.txt,sha256=3166301027b2e6de88eb67a11f0bf5c2f35d4dd64791f9bee5efe8a123ed5a29,10
