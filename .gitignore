@@ -12,11 +12,18 @@ kernel/linux
 initramfs.cpio.gz
 initrd_temp/
 rootfs_temp/
+test_rootfs/
 
 # Temporary and Local Files
 *.bak
 testfile
 modules/
+temp_check/
+temp_check_dash
+issue_new
+motd_new
+profile_new
+profile_clean
 
 # Logs and OS state
 .DS_Store
